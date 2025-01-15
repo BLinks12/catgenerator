@@ -4,149 +4,167 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Create a Cat - Cat Generator</title>
-  <!-- Fun retro font -->
+  <!-- Fun retro font (feel free to change) -->
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
   <style>
-    /* ====== BODY & GLOBAL STYLES ====== */
-    body {
-      font-family: 'Press Start 2P', cursive;
-      /* Pastel gradient with an optional background image */
-      background: linear-gradient(135deg, #fef6e4, #f8efff),
-                  url('https://yourimageurl.com/cat-park-background.jpg');
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-blend-mode: lighten;
-      color: #333;
-      text-align: center;
+    /* ========== NEW COLOR PALETTE & BACKGROUND ========== */
+    /* Inspired by an 80s neon vibe with teal, pink, and black elements */
+    :root {
+      --background-color: #1f1c2c; /* Deep black-purple */
+      --card-bg-color: #2a2438;    /* Slightly lighter background for cards */
+      --accent-color: #e05ec0;     /* Vibrant neon pink/purple */
+      --accent-color-alt: #00d4f5; /* Vibrant neon teal */
+      --text-color: #ffffff;       /* White for strong contrast */
+    }
+
+    /* ========== BASIC RESET & BODY ========== */
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-    
+
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background: var(--background-color);
+      color: var(--text-color);
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
     a {
       text-decoration: none;
+      color: var(--accent-color);
+      transition: color 0.3s ease;
     }
-    
-    /* ====== HERO SECTION ====== */
+    a:hover {
+      color: var(--accent-color-alt);
+    }
+
+    /* ========== HERO SECTION ========== */
     .hero {
-      padding: 40px 20px;
+      padding: 60px 20px 40px 20px;
     }
     .hero h1 {
-      font-size: 2.5em;
-      color: #5e4573; /* A deep purple, cat-like color */
-      text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.7);
+      font-size: 3em;
+      color: var(--accent-color);
+      text-shadow: 2px 2px 6px rgba(224, 94, 192, 0.4);
       margin-bottom: 20px;
     }
     .hero p {
-      font-size: 1.1em;
-      margin: 20px auto;
+      font-size: 1em;
       max-width: 600px;
-      line-height: 1.4;
-      color: #555;
+      margin: 20px auto;
+      line-height: 1.6;
+      color: var(--text-color);
+      opacity: 0.9;
     }
     .hero .links {
-      margin-top: 20px;
+      margin-top: 30px;
     }
     .hero a {
-      color: #ff7698; /* Soft pink/purple accent */
-      font-size: 0.9em;
+      display: inline-block;
       margin: 0 10px;
-      padding: 6px 8px;
-      border-radius: 4px;
-      transition: all 0.3s ease;
+      padding: 8px 12px;
+      font-size: 0.8em;
+      border-radius: 6px;
+      background-color: rgba(255, 255, 255, 0.1);
     }
-    .hero a:hover {
-      background: #ff7698;
-      color: #fff;
-    }
-    /* Decorative emoji before navigation links */
+
+    /* Decorative emoji in links */
     .hero a[href="#how-it-works"]::before {
-      content: "🐾 ";
+      content: "✨ ";
     }
     .hero a[href="#cat-lore"]::before {
       content: "🐈 ";
     }
 
-    /* ====== WALLET CONNECT BUTTON ====== */
+    /* ========== WALLET CONNECT SECTION ========== */
     .wallet-connect {
       margin: 20px 0;
     }
     .wallet-connect button {
       font-size: 1em;
       padding: 12px 24px;
-      background: #5141fa; /* Phantom purple */
+      background: var(--accent-color);
       color: #fff;
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      box-shadow: 0 4px 8px rgba(81, 65, 250, 0.2);
+      box-shadow: 0 6px 12px rgba(224, 94, 192, 0.3);
       transition: background 0.3s, transform 0.2s;
     }
     .wallet-connect button:hover {
-      background: #443ec5;
+      background: var(--accent-color-alt);
       transform: translateY(-2px);
     }
     .wallet-address {
       margin-top: 10px;
       font-size: 0.85em;
-      color: #5e4573;
+      opacity: 0.9;
       word-break: break-all;
     }
 
-    /* ====== GENERATOR BOX ====== */
+    /* ========== GENERATOR BOX ========== */
     .generator {
       margin: 30px auto;
       padding: 20px;
-      background: rgba(255, 255, 255, 0.8);
-      border: 2px dashed #ff7698;
+      max-width: 500px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px dashed var(--accent-color);
       border-radius: 15px;
       display: inline-block;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
     .generator input {
       font-size: 1em;
-      padding: 8px;
-      width: 300px;
+      padding: 10px;
+      width: 70%;
       margin: 10px;
       border-radius: 8px;
-      border: 2px solid #ff7698;
+      border: 2px solid var(--accent-color);
+      background: #2c2739;
+      color: var(--text-color);
       outline: none;
       transition: border 0.3s;
     }
     .generator input:focus {
-      border-color: #5e4573;
+      border-color: var(--accent-color-alt);
     }
     .generator button {
       font-size: 1em;
-      padding: 10px 20px;
-      background: #ff7698;
+      padding: 12px 20px;
+      background: var(--accent-color);
       color: #fff;
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      box-shadow: 0 4px 8px rgba(255, 118, 152, 0.2);
+      box-shadow: 0 4px 8px rgba(224, 94, 192, 0.2);
       transition: background 0.3s, transform 0.2s;
     }
     .generator button:hover {
-      background: #e56085;
+      background: var(--accent-color-alt);
       transform: translateY(-2px);
     }
 
-    /* ====== LOADING SPINNER ====== */
+    /* ========== LOADING SPINNER ========== */
     .loading-container {
       display: none;
       margin: 20px auto;
     }
     .loading-text {
-      color: #5e4573;
       font-size: 1.2em;
       margin-top: 10px;
+      color: var(--accent-color);
     }
     .spinner {
       width: 50px;
       height: 50px;
-      border: 5px solid #fef6e4;
-      border-top: 5px solid #5e4573;
+      border: 5px solid #2a2438;
+      border-top: 5px solid var(--accent-color);
       border-radius: 50%;
       animation: spin 1s linear infinite;
       margin: 0 auto;
@@ -156,43 +174,44 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* ====== CAT SHOWCASE ====== */
+    /* ========== CAT SHOWCASE ========== */
     .gnome-showcase {
-      margin: 50px 0;
+      margin: 40px 0;
     }
     .gnome-showcase h2 {
-      color: #5e4573;
+      color: var(--accent-color-alt);
       font-size: 1.8em;
       margin-bottom: 20px;
+      text-shadow: 0 2px 6px rgba(0, 212, 245, 0.4);
     }
 
-    /* ====== SINGLE CAT DISPLAY ====== */
+    /* ========== SINGLE CAT DISPLAY (CARD) ========== */
     .gnome {
       display: inline-block;
       margin: 20px;
       padding: 15px;
-      border: 2px solid #5e4573;
+      border: 2px solid var(--accent-color-alt);
       border-radius: 10px;
-      background: #fff;
-      color: #333;
+      background: var(--card-bg-color);
+      color: var(--text-color);
       text-align: left;
-      font-size: 0.8em;
+      font-size: 0.85em;
       white-space: pre;
       overflow-x: auto;
       position: relative;
       width: 300px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
       transition: transform 0.2s;
     }
     .gnome:hover {
-      transform: translateY(-2px);
+      transform: translateY(-3px);
     }
     .gnome p {
       margin: 5px 0;
-      line-height: 1.4;
+      line-height: 1.5;
     }
 
-    /* ====== BUTTONS INSIDE CAT ====== */
+    /* ========== BUTTONS INSIDE CAT ====== */
     .download-btn,
     .share-btn {
       margin-top: 10px;
@@ -205,12 +224,12 @@
       transition: background 0.3s, transform 0.2s;
     }
     .download-btn {
-      background: #5e4573;
+      background: var(--accent-color);
       color: #fff;
-      box-shadow: 0 2px 5px rgba(94, 69, 115, 0.2);
+      box-shadow: 0 2px 5px rgba(224, 94, 192, 0.2);
     }
     .download-btn:hover {
-      background: #472f5b;
+      background: var(--accent-color-alt);
       transform: translateY(-2px);
     }
     .share-btn {
@@ -223,62 +242,65 @@
       transform: translateY(-2px);
     }
 
-    /* ====== LOG AREA ====== */
+    /* ========== LOG AREA ========== */
     .log {
       width: 90%;
       max-width: 600px;
-      background-color: #202020;
+      background-color: #2a2438;
       font-family: monospace;
       font-size: 0.85em;
       padding: 10px;
-      border: 1px solid #444;
+      border: 1px solid var(--accent-color);
       border-radius: 6px;
-      margin: 20px auto;
+      margin: 0 auto 40px auto;
       overflow-y: auto;
       max-height: 200px;
       white-space: pre-wrap;
-      color: #eee;
+      color: #fff;
       text-align: left;
     }
     .log span.info {
-      color: #47d147;
+      color: #0f0;
     }
     .log span.warning {
-      color: #ffeb3b;
+      color: #ff0;
     }
     .log span.error {
-      color: #f44336;
+      color: #f00;
     }
     .log span.success {
-      color: #1de9b6;
+      color: #0ff;
     }
 
-    /* ====== INFO SECTIONS ====== */
+    /* ========== INFO SECTION ========== */
     .info-section {
       max-width: 800px;
-      margin: 50px auto;
-      background: rgba(255, 255, 255, 0.7);
+      margin: 0 auto 50px auto;
+      background: rgba(42, 36, 56, 0.8);
       padding: 30px;
       border-radius: 10px;
       text-align: left;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
     .info-section h2 {
       text-align: center;
-      color: #5e4573;
+      color: var(--accent-color);
       margin-bottom: 20px;
       font-size: 1.5em;
+      text-shadow: 0 2px 6px rgba(224, 94, 192, 0.3);
     }
     .info-section h3 {
-      color: #5e4573;
+      color: var(--accent-color-alt);
       margin-top: 30px;
       font-size: 1em;
+      margin-bottom: 10px;
     }
     .info-section p {
       line-height: 1.6;
       margin-bottom: 15px;
       font-size: 0.95em;
-      color: #444;
+      color: #eee;
+      opacity: 0.9;
     }
     .info-section ol {
       margin-left: 20px;
@@ -291,7 +313,7 @@
       margin-right: 5px;
     }
 
-    /* ====== LORE GRID ====== */
+    /* ========== LORE GRID ========== */
     .lore-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -299,31 +321,40 @@
       margin-top: 30px;
     }
     .lore-item {
-      background: #fff;
+      background: var(--card-bg-color);
       padding: 15px;
       border-radius: 8px;
-      color: #333;
-      border: 2px solid #5e4573;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+      color: #fff;
+      border: 2px solid var(--accent-color);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.4);
     }
     .lore-item h4 {
       margin-top: 0;
-      color: #5e4573;
+      color: var(--accent-color-alt);
       font-size: 1em;
       margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
-    /* ====== FOOTER ====== */
+    /* ========== FOOTER ========== */
     footer {
+      margin-top: auto; /* push footer to bottom if content is short */
       padding: 20px 0;
-      background: #5e4573;
+      background: var(--accent-color);
       color: #fff;
-      margin-top: 50px;
       font-size: 0.8em;
+      box-shadow: 0 -4px 8px rgba(0,0,0,0.1);
     }
 
-    /* ====== RESPONSIVE ====== */
+    /* ========== RESPONSIVE ========== */
     @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2em;
+      }
+      .hero p {
+        font-size: 0.95em;
+      }
       .generator input {
         width: 80%;
       }
@@ -341,7 +372,7 @@
   <!-- Hero Section -->
   <div class="hero">
     <h1>Create a Cat</h1>
-    <p>Connect your Phantom wallet and adopt your very own ASCII-styled Cat!</p>
+    <p>Connect your Phantom wallet and adopt your very own ASCII-styled Cat in a neon retro world!</p>
     <div class="links">
       <a href="#how-it-works">How It Works</a>
       <a href="#cat-lore">Cat Breeds & Traits</a>
@@ -387,60 +418,60 @@
       <li><strong>Attribute Assignment:</strong> This determines your Cat’s breed, fur color, personality trait, accessory, and “purr level.”</li>
       <li><strong>Deterministic Results:</strong> The same wallet and ID always adopt the same Cat—uniquely yours!</li>
     </ol>
-    <p>This approach blends fun with a touch of code magic, giving you a special ASCII Cat pal tied directly to your wallet and ID!</p>
+    <p>Bring some neon nostalgia to your cat adoption experience. #NeonCats</p>
   </div>
 
   <!-- Cat Breeds & Traits Section -->
   <div class="info-section" id="cat-lore">
     <h2>Cat Breeds & Traits</h2>
-    <p>From regal show-cats to mischievous alley cats, each cat breed comes with its own special quirks. Here are a few of our ASCII-inspired feline friends:</p>
+    <p>From regal show-cats to mischievous alley cats, each cat breed comes with its own quirks. Here are a few of our ASCII-inspired feline friends:</p>
 
     <!-- Lore Grid -->
     <div class="lore-grid">
       <div class="lore-item">
         <h4>Siamese</h4>
-        <p>Graceful and chatty, known for their slender frame and striking blue eyes.</p>
+        <p>Graceful, chatty, known for their slender frame and striking eyes.</p>
       </div>
       <div class="lore-item">
         <h4>Persian</h4>
-        <p>Luxurious fur, a calm demeanor, loves lounging in soft spots all day long.</p>
+        <p>Luxurious fur, calm demeanor, loves cozy nooks and a good grooming session.</p>
       </div>
       <div class="lore-item">
         <h4>Maine Coon</h4>
-        <p>Big, fluffy, and sociable. Known as the gentle giants of the cat world.</p>
+        <p>Big, fluffy, and sociable—gentle giants with a curious streak.</p>
       </div>
       <div class="lore-item">
         <h4>Calico</h4>
-        <p>A patchwork of colors, fiercely independent yet very affectionate.</p>
+        <p>A patchwork of colors, fiercely independent yet full of affection.</p>
       </div>
       <div class="lore-item">
         <h4>British Shorthair</h4>
-        <p>Plush fur, chubby cheeks, and an easygoing nature. Great cuddle buddies.</p>
+        <p>Plush fur, round faces, and a relaxed attitude for lazy Sundays.</p>
       </div>
       <div class="lore-item">
         <h4>Sphynx</h4>
-        <p>Hairless and striking. They stay warm by seeking extra blankets or human laps.</p>
+        <p>Hairless and striking, stays warm by soaking up all the cuddles.</p>
       </div>
       <div class="lore-item">
         <h4>Bengal</h4>
-        <p>Wild-looking rosettes and a love for water. Extremely energetic and curious.</p>
+        <p>Wild rosettes, loves water, brimming with energy and curiosity.</p>
       </div>
       <div class="lore-item">
         <h4>Ragdoll</h4>
-        <p>Docile, relaxed, and likely to go limp when held. Often called the puppy-cat.</p>
+        <p>Docile and easygoing, likely to go limp in your arms—puppy-cat vibes.</p>
       </div>
     </div>
 
-    <h3>Rarity and Collectibility</h3>
-    <p>Some Cats might develop rare fur patterns, quirky accessories, or legendary purr levels. Try different IDs to uncover them all!</p>
+    <h3>Rarity & Collectibility</h3>
+    <p>Some Cats may develop rare fur patterns, quirky accessories, or legendary purr levels. Test different IDs to discover hidden neon cats!</p>
   </div>
 
   <!-- Footer -->
   <footer>
-    © 2025 Create a Cat | Sharing Whiskered Friends with Code
+    © 2025 Create a Cat | Neon Dreams & Digital Whiskers
   </footer>
 
-  <!-- Script -->
+  <!-- Script: EXACT SAME LOGIC, NEW STYLE -->
   <script>
   (function() {
     // DOM Elements
@@ -464,14 +495,14 @@
 
     let userWalletAddress = null;
 
-    // Connect Wallet Function
+    // Connect Wallet
     const connectWallet = async () => {
       const provider = getProvider();
       if (provider) {
         try {
           const response = await provider.connect();
           userWalletAddress = response.publicKey.toString();
-          walletAddressDisplay.textContent = `Connected: ${userWalletAddress.substring(0, 6)}...${userWalletAddress.substring(userWalletAddress.length - 4)}`;
+          walletAddressDisplay.textContent = `Connected: ${userWalletAddress.substring(0,6)}...${userWalletAddress.substring(userWalletAddress.length-4)}`;
           connectWalletButton.style.display = 'none';
           generatorSection.style.display = 'block';
           logMessage("Wallet connected successfully.", "success");
@@ -486,7 +517,6 @@
         window.open("https://phantom.app/", "_blank");
       }
     };
-
     connectWalletButton.addEventListener('click', connectWallet);
 
     // Cat Archetypes + ASCII
@@ -497,7 +527,7 @@
         art: String.raw`
  /\_/\ 
 ( o.o )  ~ "Meeoow!"
- > ^ <    
+ > ^ < 
         `
       },
       {
@@ -518,8 +548,8 @@
         art: String.raw`
    (\__/)  
    ( o.o )  ~ "Big heart!"
-   /  V  \ 
-    || ||
+   /  V  \
+   ||  || 
         `
       },
       {
@@ -528,19 +558,19 @@
         art: String.raw`
  /\     /\
 {  '   '  }  ~ "I do what I want."
- )  ---  ( 
+ )  ---  (
 (   ---   )
- \  ___  / 
+ \  ___  /
         `
       },
       {
         breed: 'British Shorthair',
         traits: ['Cuddly', 'Plush', 'Easygoing'],
         art: String.raw`
-   /\___/\ 
+   /\___/\
   (  o o  )   ~ "Cheerio!"
-   )  ~  (   
-   \ ___ / 
+   )  ~  (
+   \ ___ /
         `
       },
       {
@@ -551,7 +581,7 @@
   (  )  ~ "So cold..."
  (    ) 
   (  )
-   \/ 
+   \/
         `
       },
       {
@@ -560,8 +590,8 @@
         art: String.raw`
  /\__/\ 
 ( o.o )   ~ "Let's climb!"
- ( __ )   
-  /  \    
+ ( __ )
+  /  \
         `
       },
       {
@@ -570,8 +600,8 @@
         art: String.raw`
    /\__/\ 
   ( -.-  )  ~ "Flop..."
-   )  (    
-  (    )   
+   )  (
+  (    )
    \__/
         `
       },
@@ -592,7 +622,7 @@
       return input.length >= 4;
     }
 
-    // Simple hashing
+    // Hash
     function hashID(input) {
       let hash = 0;
       for (let i = 0; i < input.length; i++) {
@@ -603,7 +633,7 @@
       return Math.abs(hash);
     }
 
-    // Cat creation
+    // Cat Generation
     function generateCat(hash) {
       const breedIndex = hash % CAT_TYPES.length;
       const colorIndex = (hash >> 2) % FUR_COLORS.length;
@@ -695,9 +725,8 @@ Accessory: ${cat.accessory}
 Purr: ${cat.purrLevel}/100
 
 #CreateACat
-@CatGeneratorSol
-
-`;
+@CatGeneratorNeon
+      `;
       const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`;
       window.open(tweetUrl, '_blank');
     }
@@ -769,5 +798,6 @@ Purr: ${cat.purrLevel}/100
     });
   })();
   </script>
+
 </body>
 </html>
