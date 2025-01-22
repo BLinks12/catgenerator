@@ -106,8 +106,8 @@
       word-break: break-all;
     }
 
-    /* ========== GENERATOR BOX ========== */
-    .generator {
+    /* ========== Creator BOX ========== */
+    .Creator {
       margin: 30px auto;
       padding: 20px;
       max-width: 500px;
@@ -117,7 +117,7 @@
       box-shadow: 0 4px 12px rgba(0, 255, 102, 0.1);
       display: inline-block;
     }
-    .generator input {
+    .Creator input {
       font-size: 0.9em;
       padding: 8px;
       width: 280px;
@@ -129,10 +129,10 @@
       outline: none;
       transition: border 0.3s;
     }
-    .generator input:focus {
+    .Creator input:focus {
       border-color: var(--accent-green-light);
     }
-    .generator button {
+    .Creator button {
       font-size: 0.9em;
       padding: 10px 20px;
       background: var(--accent-green);
@@ -143,7 +143,7 @@
       box-shadow: 0 4px 8px rgba(0, 255, 102, 0.2);
       transition: background 0.3s, transform 0.2s;
     }
-    .generator button:hover {
+    .Creator button:hover {
       background: var(--accent-green-light);
       transform: translateY(-2px);
     }
@@ -353,7 +353,7 @@
       .hero p {
         font-size: 0.8em;
       }
-      .generator input {
+      .Creator input {
         width: 80%;
       }
       .gnome {
@@ -369,7 +369,7 @@
 
   <!-- Hero Section -->
   <div class="hero">
-    <h1>Cat Generator</h1>
+    <h1>Cat Creator</h1>
     <p>Connect your Phantom wallet and adopt your very own ASCII-styled Cat.</p>
     <div class="links">
       <a href="#how-it-works">How It Works</a>
@@ -383,8 +383,8 @@
     <div id="wallet-address" class="wallet-address"></div>
   </div>
 
-  <!-- Generator -->
-  <div class="generator" id="generator-section" style="display: none;">
+  <!-- Creator -->
+  <div class="Creator" id="Creator-section" style="display: none;">
     <label for="cat-id" style="display:none;">Cat ID</label>
     <input type="text" id="cat-id" placeholder="> Enter your unique ID...">
     <button id="generate-button">Adopt My Cat</button>
@@ -450,7 +450,7 @@
 
   <!-- Footer -->
   <footer>
-    © 2025 CAT GENERATOR
+    © 2025 CAT Creator
   </footer>
 
   <!-- Script: EXACT SAME LOGIC, NEW HACKER-STYLE LOOK -->
@@ -459,7 +459,7 @@
     // DOM Elements
     const connectWalletButton = document.getElementById('connect-wallet');
     const walletAddressDisplay = document.getElementById('wallet-address');
-    const generatorSection = document.getElementById('generator-section');
+    const CreatorSection = document.getElementById('Creator-section');
     const catInput = document.getElementById('cat-id');
     const generateButton = document.getElementById('generate-button');
     const catShowcase = document.getElementById('cat-showcase');
@@ -486,7 +486,7 @@
           userWalletAddress = response.publicKey.toString();
           walletAddressDisplay.textContent = `Connected: ${userWalletAddress.substring(0, 6)}...${userWalletAddress.substring(userWalletAddress.length - 4)}`;
           connectWalletButton.style.display = 'none';
-          generatorSection.style.display = 'block';
+          CreatorSection.style.display = 'block';
           logMessage("Wallet connected successfully.", "success");
 
           checkExistingCat(userWalletAddress);
@@ -666,7 +666,7 @@ Accessory: ${cat.accessory}
 Purr: ${cat.purrLevel}/100
 
 #CreateACat
-@CatGeneratorFun
+@CatCreatorFun
 
 
 `;
@@ -690,7 +690,7 @@ Purr: ${cat.purrLevel}/100
         const existingCat = JSON.parse(catData);
         displayCat(existingCat);
         logMessage("A Cat already exists for this wallet.", "warning");
-        generatorSection.style.display = 'none';
+        CreatorSection.style.display = 'none';
       }
     }
 
@@ -735,8 +735,8 @@ Purr: ${cat.purrLevel}/100
 
         saveCat(userWalletAddress, newCat);
 
-        // Hide the generator to prevent multiple cats
-        generatorSection.style.display = 'none';
+        // Hide the Creator to prevent multiple cats
+        CreatorSection.style.display = 'none';
       }, 2000);
     });
   })();
